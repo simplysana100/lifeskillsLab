@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap">
+<title>LifeSkills Mini</title>
+<style>
+:root{--bg:#fff8ec;--card:#fff;--ink:#1f2a44;--mute:#4a5570;--line:#c9c3b3;--blue:#cfe6ff;--mint:#cdf2dc;--yel:#ffe9a8;--lav:#e3dcff;--btn:#2f5fb3;--btnt:#fff;--ok:#146c3a;--no:#8a4b00;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#171c2b;--card:#222a40;--ink:#f3f0e6;--mute:#c4cbe0;--line:#4a5575;--blue:#27406b;--mint:#1f4a3a;--yel:#5a4a16;--lav:#3d3668;--btn:#9cc3ff;--btnt:#10192e;--ok:#8de2a9;--no:#ffc27a}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#171c2b;--card:#222a40;--ink:#f3f0e6;--mute:#c4cbe0;--line:#4a5575;--blue:#27406b;--mint:#1f4a3a;--yel:#5a4a16;--lav:#3d3668;--btn:#9cc3ff;--btnt:#10192e;--ok:#8de2a9;--no:#ffc27a}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px);font-size:100%}
+html.big{font-size:118%}html.small{font-size:92%}html.xl{font-size:135%}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:1.05rem/1.55 "Fredoka","Baloo 2","Trebuchet MS","Segoe UI",system-ui,sans-serif;font-weight:500}
+body.hc{--bg:#fff;--card:#fff;--ink:#000;--mute:#000;--line:#000;--blue:#fff;--mint:#fff;--yel:#fff;--lav:#fff;--btn:#000;--btnt:#fff;--ok:#006400;--no:#7a0000}
+body.hc .card,body.hc .opt{border:3px solid #000}
+body.rm *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+a,button{font:inherit}
+:focus-visible{outline:4px solid #e07a00;outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:1rem}
+header{background:var(--card);border-bottom:2px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:10}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem}
+.logo{font-weight:800;font-size:1.3rem;color:var(--ink);text-decoration:none;display:flex;gap:.4rem;align-items:center;margin-right:auto}
+nav{display:flex;flex-wrap:wrap;gap:.25rem}
+nav a{padding:.55rem .9rem;border-radius:999px;color:var(--ink);text-decoration:none;font-weight:700;min-height:44px;display:inline-flex;align-items:center}
+nav a[aria-current=page]{background:var(--yel);box-shadow:inset 0 0 0 2px var(--ink)}
+h1{font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.15;margin:.2em 0}h2{font-size:1.5rem;margin:1.5rem 0 .6rem}h3{margin:.2rem 0}
+.btn,.opt{cursor:pointer;border-radius:16px;border:2px solid var(--ink);padding:.8rem 1.2rem;min-height:48px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;justify-content:center}
+.btn{background:var(--btn);color:var(--btnt)}.btn.alt{background:var(--card);color:var(--ink)}
+.opt{background:var(--card);color:var(--ink);width:100%;justify-content:flex-start;text-align:left;box-shadow:0 3px 0 var(--line);transition:transform .15s}
+.opt:hover:not(:disabled){transform:translateY(-2px)}.opt:disabled{opacity:1;cursor:default}
+.opt.good{background:var(--mint);border-width:4px}.opt.bad{background:var(--yel);border-style:dashed}
+.opts{display:grid;gap:.6rem;margin:.8rem 0}
+.card{background:var(--card);border-radius:24px;padding:1.2rem;box-shadow:0 6px 18px rgba(31,42,68,.12);border:2px solid var(--line)}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.hero{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:center;padding:1.5rem 0}
+.art{background:linear-gradient(135deg,var(--blue),var(--lav));border-radius:32px;padding:1.5rem;text-align:center;font-size:3rem;line-height:1.5}
+.tag{display:inline-block;background:var(--lav);border-radius:999px;padding:.1rem .7rem;font-size:.85rem;font-weight:700}
+.ico{font-size:2.6rem}
+.fb{min-height:2.6rem;font-weight:700;margin:.4rem 0}.fb.good{color:var(--ok)}.fb.bad{color:var(--no)}
+.bar{height:16px;background:var(--line);border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--btn);transition:width .4s}
+.badge{display:inline-flex;gap:.4rem;padding:.5rem .9rem;border-radius:999px;border:2px solid var(--ink);margin:.2rem;font-weight:700;background:var(--mint)}.badge.off{background:var(--card);border-style:dashed;opacity:.85}
+.coin{display:inline-flex;width:56px;height:56px;border-radius:50%;background:var(--yel);border:3px solid var(--ink);align-items:center;justify-content:center;font-weight:800;margin:.2rem}
+.note{background:var(--yel);border-radius:14px;padding:.6rem .9rem;font-size:.95rem}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}.sg>div{display:grid;gap:.6rem;align-content:start}main:focus{outline:none}
+.sign{font-size:2.2rem;justify-content:center;text-align:center}
+.clockbox{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.digi{font-size:2.4rem;font-weight:800;background:var(--card);border:3px solid var(--ink);border-radius:16px;padding:.2rem 1rem}
+#set{position:absolute;right:1rem;top:calc(100% + .5rem);display:none;z-index:6;width:min(320px,92vw)}#set.on{display:block}
+.pop{animation:pop .4s}@keyframes pop{from{transform:scale(.96)}to{transform:scale(1)}}
+h1,h2,.logo{font-family:"Fredoka","Baloo 2","Trebuchet MS",sans-serif;font-weight:700;letter-spacing:.04em;color:#ffcf33;-webkit-text-stroke:.07em var(--ink);paint-order:stroke fill;text-shadow:.06em .07em 0 var(--ink)}
+body.hc h1,body.hc h2,body.hc .logo{color:var(--ink);-webkit-text-stroke:0;text-shadow:none}
+.pipbox{display:flex;gap:.8rem;align-items:flex-start}.pip{font-size:3.2rem;animation:bob 2.5s ease-in-out infinite}
+.bub{background:var(--card);border:3px solid var(--ink);border-radius:24px;padding:.8rem 1.1rem;flex:1}
+.say{font-size:1.3rem;font-weight:600;margin:0}
+.big{font-size:5rem;background:var(--card);border:3px solid var(--ink);border-radius:50%;width:140px;height:140px;cursor:pointer;margin:.8rem auto 0;display:block;line-height:1;box-shadow:0 5px 0 var(--ink)}
+.big.boing{animation:boing .6s}
+.hint{font-weight:600;min-height:1.6rem;margin:.3rem;text-align:center}
+.dots{display:flex;gap:.4rem;justify-content:center;margin:.6rem}.dots span{width:14px;height:14px;border-radius:50%;border:2px solid var(--ink);background:var(--card)}.dots span.on{background:var(--btn)}
+@keyframes boing{0%{transform:scale(1)}30%{transform:scale(1.25) rotate(-8deg)}60%{transform:scale(.92) rotate(6deg)}100%{transform:scale(1)}}
+@keyframes bob{50%{transform:translateY(-6px)}}
+footer{color:var(--mute);text-align:center;padding:2rem 1rem}
+@media (max-width:700px){header{position:static}}
+</style></head><body>
+<header><div class="wrap">
+<a class="logo" href="#home" aria-label="LifeSkills Mini home"><span aria-hidden="true">🧩</span> LifeSkills Mini</a>
+<nav aria-label="Main"><a href="#home" data-p="home">Home</a><a href="#learn" data-p="learn">Learn</a><a href="#progress" data-p="progress">My Progress</a><a href="#about" data-p="about">About</a></nav>
+<button class="btn alt" id="sb" aria-expanded="false" aria-controls="set">⚙️ Settings</button></div>
+<div id="set" class="card" role="region" aria-label="Accessibility settings">
+<h3>Accessibility</h3>
+<p><b>Text size</b></p><div id="ts" style="display:flex;gap:.4rem;flex-wrap:wrap"></div>
+<p><label><input type="checkbox" id="hc"> High contrast</label></p>
+<p><label><input type="checkbox" id="rm"> Reduce motion</label></p>
+<p class="note">Settings are saved on this device only.</p></div></header>
+<main class="wrap" id="main" tabindex="-1"></main>
+<footer>LifeSkills Mini is a free learning project. No sign-up. No personal information is collected.</footer>
+<script>
+const $=s=>document.querySelector(s),shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let P=store.get("lsm-p",{l:{},q:{},c:0,v:{},a:{}}),S=store.get("lsm-s",{t:"",hc:0,rm:0});
+const sp=()=>store.set("lsm-p",P);
+/* ---------- CONTENT (edit here to add lessons and questions) ---------- */
+const Q=(q,o,a,e)=>({q,o,a,e});
+const C={
+time:{n:"Time Explorer",i:"🕒",age:"Ages 5–8",d:"Learn to read clocks, understand hours and minutes, and practise daily schedules.",bg:"var(--blue)",badge:"Time Explorer",
+lesson:[["🌅","Good morning, explorer! Our day has four parts: morning, afternoon, evening and night."],["⏰","One hour has 60 minutes. That is a lot of tiny ticks!"],["🕛","The short hand tells the hour. The long hand tells the minutes. When the long hand points straight up at 12, it is o’clock!"],["🕡","When the long hand points down to 6, it is half past. Digital clocks show it in numbers, like 7:30."]],
+quiz:[Q("You have school at 8:00 AM. Is that in the morning or evening?",["Morning","Evening","Night"],0,"AM times are before noon, so 8:00 AM is in the morning."),
+Q("How many minutes are in one hour?",["60","30","100"],0,"One hour is always 60 minutes."),
+Q("The short hand points to 3 and the long hand points to 12. What time is it?",["3:00","12:03","3:30"],0,"The short hand says the hour (3). The long hand on 12 means o’clock."),
+Q("Which part of the day is best for sleeping?",["Night","Afternoon","Morning"],0,"Night is the time when it is dark and our bodies rest."),
+Q("The long hand points to 6 and the short hand is halfway between 6 and 7. Which time matches?",["6:30","6:15","5:30"],0,"The long hand on 6 means half past, so it is 6:30.")]},
+money:{n:"Money Smart",i:"💰",age:"Ages 6–9",d:"Recognize coins and notes, compare prices, and practise simple purchases.",bg:"var(--yel)",badge:"Money Master",
+lesson:[["🪙","Money helps us buy things we need or want. Let’s meet some coins!"],["🔢","Every coin and note has a number. The number tells us how much it is worth."],["⚖️","Which costs less? Look at the numbers. A smaller number costs less!"],["➕","Adding is fun! 3 + 2 = 5. Put the amounts together to find the total."]],
+quiz:[Q("A pencil costs 5 units. Which amount pays exactly for the pencil?",["2 units","5 units","10 units"],1,"5 units is the same as the price, so it pays exactly."),
+Q("An apple costs 3 units and a pencil costs 2 units. How much for both?",["5 units","6 units","1 unit"],0,"3 + 2 = 5 units."),
+Q("A book costs 8 units and a toy costs 6 units. Which costs less?",["The toy","The book","They cost the same"],0,"6 is smaller than 8, so the toy costs less."),
+Q("You pay 10 units for something that costs 7 units. How much change do you get back?",["3 units","17 units","2 units"],0,"10 − 7 = 3 units."),
+Q("What is money used for?",["Buying things we need or want","Eating for dinner","Wearing as a hat"],0,"Money lets us trade for things we need or want.")]},
+signs:{n:"Sign Detective",i:"🚦",age:"Ages 5–9",d:"Learn common road signs, public signs, and everyday symbols.",bg:"var(--mint)",badge:"Sign Detective",
+lesson:[["🚦","Signs are like secret pictures that tell us things fast. Let’s be detectives!"],["🔴","Red signs often say stop or do not. Yellow signs often say be careful."],["🌍","Signs can look a little different in different countries. Ask a grown-up if you are not sure."],["🧑‍🏫","Learning signs here is practice. Always listen to grown-ups and road-safety rules too!"]],
+quiz:[Q("🛑 What does this sign mean?",["Stop","Go faster","Park here"],0,"A red sign with STOP means we must stop."),
+Q("🚫 What does this sign mean?",["No entry","Welcome","Slide here"],0,"A red circle with a line means you must not go in."),
+Q("🚸 This sign shows children near a school. What should drivers do?",["Slow down and watch","Speed up","Ignore it"],0,"School signs remind people to slow down and be careful."),
+Q("🚻 Where would you see this sign?",["Restroom","Library","Playground"],0,"This sign shows where the restroom is."),
+Q("⚠️ What does this sign mean?",["Be careful: possible danger","Free gift","Quiet please"],0,"A warning sign tells us to take extra care.")]},
+safety:{n:"Safety Stars",i:"🛡️",age:"Ages 6–12",d:"Practise age-appropriate safety decisions for home, school, and public places.",bg:"var(--lav)",badge:"Safety Star",
+lesson:[["🌟","You can be a Safety Star! The first star move is to tell a trusted grown-up if something feels wrong."],["🔥","Matches, plugs and sockets are not toys. Medicines and strange bottles are for grown-ups only."],["🛍️","Lost in a shop or park? Stay somewhere safe and ask a staff member or another trusted helper for help."],["📞","In an emergency, ask a grown-up to call the emergency number. Never share private details online."]],
+quiz:[Q("You are in a shop and cannot find the adult you came with. What should you do?",["Leave the shop alone","Ask a staff member for help and stay in a safe public place","Go outside to search by yourself"],1,"Staying in a safe place and asking staff is the quickest way to find your adult."),
+Q("You find a bottle of medicine at home. What is the safest choice?",["Do not touch it and tell a trusted adult","Taste a little","Share it with a friend"],0,"Medicines can hurt us if we use them wrongly. An adult will know what to do."),
+Q("You want to cross the road. What is safest?",["Run across quickly","Stop, look both ways, and cross with an adult or at a crossing","Cross while looking at a phone"],1,"Stopping and looking helps you cross safely."),
+Q("Something feels unsafe. What is a good first step?",["Tell a trusted adult","Keep it a secret","Wait and see"],0,"Trusted adults are there to help you."),
+Q("Matches and electrical outlets are…",["Not toys. Stay away and tell an adult","Fun to play with","Safe if you are careful"],0,"They can cause fires or shocks, so only adults should handle them.")]},
+choices:{n:"Smart Choices",i:"🧠",age:"Ages 5–12",d:"Solve everyday problems and learn how to make thoughtful decisions.",bg:"var(--blue)",badge:"Smart Thinker",
+lesson:[["🧩","Little problems are like puzzles. Stop, think, then choose!"],["🎒","Take care of your things and put them back where they belong. Future you will say thanks!"],["🤝","Sharing and taking turns helps everyone feel part of the game."],["🙋","Stuck? Asking for help is a super smart move."]],
+quiz:[Q("You have finished using a library book. What is a responsible next step?",["Leave it on the floor","Put it in the return place","Take it home without permission"],1,"Returning it lets other people enjoy it too."),
+Q("A friend wants a turn on the swing. What is a kind choice?",["Take turns","Say no forever","Run away"],0,"Taking turns is fair for everyone."),
+Q("You cannot solve a puzzle. What is a good idea?",["Ask for help or try a new way","Throw it","Never try again"],0,"Asking for help or trying another way are both smart moves."),
+Q("You get home from school. Where should your bag go?",["In its place","On the floor in the doorway","Outside in the rain"],0,"Keeping things in their place makes them easy to find."),
+Q("You can pick one snack. What helps you decide?",["Think about what you want and what is healthy","Grab both","Wait until all the snacks are gone"],0,"Thinking first helps us make good choices.")]}};
+const K=Object.keys(C);
+/* ---------- HELPERS ---------- */
+const MSG=["Great thinking!","You are learning something new!","Nice work!"];
+function askQ(el,q,cb){const opts=shuf(q.o.map((t,i)=>({t,c:i===q.a}))),first={v:true};
+el.innerHTML=`<p style="font-size:1.2rem;font-weight:700">${q.q}</p><div class="opts">${opts.map((o,i)=>`<button class="opt" data-i="${i}">${o.t}</button>`).join("")}</div><div class="fb" role="status" aria-live="polite"></div>`;
+const fb=el.querySelector(".fb");
+el.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const o=opts[b.dataset.i];
+if(o.c){el.querySelectorAll(".opt").forEach(x=>x.disabled=true);b.classList.add("good","pop");b.insertAdjacentText("beforeend"," ✔");fb.className="fb good";fb.textContent="✔ "+MSG[Math.random()*3|0]+" "+q.e;cb(first.v)}
+else{first.v=false;b.disabled=true;b.classList.add("bad");b.insertAdjacentText("beforeend"," (try another)");fb.className="fb bad";fb.textContent="Almost there! Let’s try again. Pick another answer."}})}
+function runQuiz(el,k){let qs=shuf(C[k].quiz),i=0,s=0;
+function show(){if(i>=qs.length)return end();el.innerHTML=`<p><b>Question ${i+1} of ${qs.length}</b></p><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${qs.length}" aria-valuenow="${i}"><i style="width:${i/qs.length*100}%"></i></div><div id="qa"></div><div id="nx"></div>`;
+askQ(el.querySelector("#qa"),qs[i],ok=>{if(ok){s++;P.c++;sp()}const n=el.querySelector("#nx");n.innerHTML=`<button class="btn">${i+1<qs.length?"Next question":"See my score"}</button>`;n.firstChild.focus();n.firstChild.onclick=()=>{i++;show()}})}
+function end(){P.q[k]=Math.max(P.q[k]||0,s);sp();const nk=K[(K.indexOf(k)+1)%K.length];
+el.innerHTML=`<div class="pop"><h3>Your score: ${s} out of ${qs.length}</h3><p>${s>=4?"Wonderful work completing this lesson!":"Almost there! Let’s try again. Every try helps you learn."}</p><button class="btn alt" id="ra">Try Again</button> <a class="btn" href="#${nk}">Next Lesson: ${C[nk].n}</a></div>`;el.querySelector("#ra").onclick=()=>runQuiz(el,k)}
+show()}
+/* ---------- CLOCK ---------- */
+const hm=t=>(Math.floor(t/60)%12||12)+":"+String(t%60).padStart(2,"0");
+function clockSVG(t){const h=(t/60%12)*30,m=(t%60)*6;let n="";for(let i=1;i<=12;i++){const a=i*Math.PI/6;n+=`<text x="${100+72*Math.sin(a)}" y="${108-72*Math.cos(a)}" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">${i}</text>`}
+return `<svg viewBox="0 0 200 200" width="220" height="220" role="img" aria-label="Analogue clock showing ${hm(t)}"><circle cx="100" cy="100" r="92" fill="var(--card)" stroke="currentColor" stroke-width="5"/>${n}<line x1="100" y1="100" x2="100" y2="52" stroke="currentColor" stroke-width="8" stroke-linecap="round" transform="rotate(${h} 100 100)"/><line x1="100" y1="100" x2="100" y2="28" stroke="var(--btn)" stroke-width="5" stroke-linecap="round" transform="rotate(${m} 100 100)"/><circle cx="100" cy="100" r="6" fill="currentColor"/></svg>`}
+function timeAct(el){let t=420;el.innerHTML=`<h3>Move the clock</h3><p>The short thick hand is the hour. The long blue hand is the minutes.</p><div class="clockbox"><div id="ck"></div><div><div class="digi" id="dg" aria-live="polite"></div><p><button class="btn alt" data-d="-30">− 30 min</button> <button class="btn alt" data-d="30">+ 30 min</button> <button class="btn alt" data-d="60">+ 1 hour</button></p></div></div><h3>Clock match</h3><div id="cm"></div>`;
+const up=()=>{el.querySelector("#ck").innerHTML=clockSVG(t);el.querySelector("#dg").textContent=hm(t)};up();
+el.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{t=((t+ +b.dataset.d)%720+720)%720;up()});
+(function m(){const r=(30*(1+Math.random()*22|0))%720,w=new Set([r]);while(w.size<3)w.add(30*(Math.random()*24|0)%720);
+const box=el.querySelector("#cm");box.innerHTML='<div id="mq"></div><div id="mc"></div>';
+askQ(box.querySelector("#mq"),{q:"Look at the clock. Which digital time matches it?",o:[...w].map(hm),a:[...w].map(hm).indexOf(hm(r)),e:`The hands show ${hm(r)}.`},()=>{});
+box.querySelector("#mc").innerHTML=clockSVG(r)+'<p><button class="btn alt">New clock</button></p>';box.querySelector("#mc button").onclick=m;box.querySelector("#mq").insertAdjacentHTML("beforebegin",clockSVG(r));box.querySelector("#mc svg").remove()})()}
+/* ---------- MONEY ---------- */
+const CUR={units:{n:"Generic units",f:n=>n+" units"},INR:{n:"INR (rupees)",f:n=>"₹"+n},SAR:{n:"SAR (riyals)",f:n=>"SAR "+n}};
+function moneyAct(el){let cu="units";const items=[["Apple","🍎",3],["Pencil","✏️",5],["Toy","🧸",8],["Book","📘",12]];
+function draw(){const f=CUR[cu].f;el.innerHTML=`<h3>Virtual shop</h3><p><label>Currency <select id="cs">${Object.keys(CUR).map(k=>`<option value="${k}" ${k==cu?"selected":""}>${CUR[k].n}</option>`).join("")}</select></label></p><p class="note">These are example prices and simple drawings, not real banknotes or official designs. More currencies can be added in the CUR list.</p><p aria-label="Example coins">${[1,2,5,10].map(n=>`<span class="coin" role="img" aria-label="Example coin worth ${f(n)}">${n}</span>`).join("")}</p><div class="grid">${items.map((x,i)=>`<button class="opt" data-i="${i}"><span class="ico" aria-hidden="true">${x[1]}</span>${x[0]}: ${f(x[2])}</button>`).join("")}</div><div id="sq" class="card" style="margin-top:1rem">Pick an item to buy.</div>`;
+el.querySelector("#cs").onchange=e=>{cu=e.target.value;draw()};
+el.querySelectorAll(".grid .opt").forEach(b=>b.onclick=()=>{const x=items[b.dataset.i],p=x[2];askQ(el.querySelector("#sq"),{q:`A ${x[0].toLowerCase()} costs ${f(p)}. Which amount pays exactly?`,o:[f(p),f(p+2),f(Math.max(1,p-2))],a:0,e:`${f(p)} matches the price exactly.`},ok=>{P.a.money=1;sp()})})}
+draw()}
+/* ---------- SIGNS ---------- */
+function signAct(el){const pr=[["🛑","Stop","red eight-sided sign"],["🚫","No entry","red circle with a line through it"],["🚸","School zone","yellow sign with walking children"],["🚻","Restroom","sign with two people"]];let sel=null,done=0;
+const L=shuf(pr),R=shuf(pr);
+el.innerHTML=`<h3>Match the sign to its meaning</h3><p>Pick a sign, then pick its meaning.</p><div class="sg"><div>${L.map(p=>`<button class="opt sign" data-m="${p[1]}" aria-label="Sign: ${p[2]}">${p[0]}</button>`).join("")}</div><div>${R.map(p=>`<button class="opt" data-n="${p[1]}">${p[1]}</button>`).join("")}</div></div><div class="fb" role="status" aria-live="polite"></div>`;
+const fb=el.querySelector(".fb");
+el.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{sel=b;el.querySelectorAll("[data-m]").forEach(x=>x.style.outline="");b.style.outline="4px solid var(--btn)";fb.className="fb";fb.textContent="Now pick the meaning."});
+el.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{if(!sel){fb.className="fb bad";fb.textContent="Pick a sign first.";return}
+if(sel.dataset.m===b.dataset.n){[sel,b].forEach(x=>{x.disabled=true;x.classList.add("good","pop");x.style.outline=""});b.insertAdjacentText("beforeend"," ✔");sel=null;fb.className="fb good";fb.textContent="✔ Great thinking! That is a match.";if(++done==4){fb.textContent="✔ Wonderful! You matched all four. Signs can look different in different countries.";P.a.signs=1;sp()}}
+else{fb.className="fb bad";fb.textContent="Almost there! Let’s try again. That is not the right match."}})}
+function lessonUI(el,k){const L=C[k].lesson,ch=["Boing!","Wheee!","Yay!","Hooray!","Super!","Wow!"];let i=0;
+function draw(){const s=L[i];el.innerHTML=`<div class="pipbox"><div class="pip" aria-hidden="true">🐥</div><div class="bub"><p class="say" aria-live="polite">${s[1]}</p></div></div><button class="big" id="em" aria-label="Tap the picture for a surprise">${s[0]}</button><p class="hint" id="ht" role="status">Tap the picture!</p><div class="dots" role="img" aria-label="Step ${i+1} of ${L.length}">${L.map((_,j)=>`<span class="${j<=i?"on":""}"></span>`).join("")}</div><p style="text-align:center"><button class="btn alt" id="pv" ${i?"":"disabled"}>◀ Back</button> <button class="btn" id="nx2">${i<L.length-1?"Next ▶":"All done! 🎉"}</button></p>`;
+const em=el.querySelector("#em");em.onclick=()=>{em.classList.remove("boing");void em.offsetWidth;em.classList.add("boing");el.querySelector("#ht").textContent=ch[Math.random()*ch.length|0]};
+el.querySelector("#pv").onclick=()=>{i--;draw()};el.querySelector("#nx2").onclick=()=>{if(i<L.length-1){i++;draw()}else fin()}}
+function fin(){P.l[k]=1;sp();el.innerHTML=`<div class="pop" style="text-align:center"><div class="ico" aria-hidden="true">🎉⭐🎈⭐🎉</div><h2>Hooray! Lesson done!</h2><p class="say">You did it! Now try the fun activity, then the quiz.</p><p><button class="btn alt" id="rp">Play the lesson again</button></p></div>`;el.querySelector("#rp").onclick=()=>{i=0;draw()}}
+P.l[k]?fin():draw()}
+/* ---------- PAGES ---------- */
+const card=k=>{const c=C[k];return `<div class="card" style="background:${c.bg}"><div class="ico" aria-hidden="true">${c.i}</div><h3>${c.n}</h3><p>${c.d}</p><p><span class="tag">${c.age}</span></p><a class="btn" href="#${k}">Start Lesson</a></div>`};
+const pct=k=>((P.l[k]?1:0)+(P.q[k]!==undefined?1:0))*50;
+const pages={
+home(el){el.innerHTML=`<section class="hero"><div><h1>Learn Life Skills the Fun Way!</h1><p style="font-size:1.15rem">Explore the little things that help you feel more confident every day. Learn, practise, and discover one skill at a time!</p><p><a class="btn" href="#time">Start Learning</a> <a class="btn alt" href="#learn">Explore Skills</a></p><p><i>Little Lessons. Real-Life Confidence.</i></p></div><div class="art" role="img" aria-label="Friendly pictures of a clock, coins, a stop sign, a shield and a thinking face">🕒 💰<br>🚦 🛡️ 🧠</div></section><h2>Learning categories</h2><div class="grid">${K.map(card).join("")}</div><h2>Today’s Mini Challenge</h2><div class="card" id="dc"></div>`;
+const all=K.flatMap(k=>C[k].quiz);askQ(el.querySelector("#dc"),all[Math.random()*all.length|0],()=>{})},
+learn(el){el.innerHTML=`<h1>Learn</h1><p>Pick a skill to start. Each one has a short lesson, an activity and a 5-question quiz.</p><div class="grid">${K.map(card).join("")}</div>`},
+progress(el){const lc=K.filter(k=>P.l[k]).length,qc=K.filter(k=>P.q[k]!==undefined).length,ex=K.filter(k=>P.v[k]).length,earned=K.filter(k=>P.l[k]&&P.q[k]!==undefined);
+el.innerHTML=`<h1>My Progress</h1><p class="note">Progress is saved on this device and browser only. It may not move to another device. We do not collect any personal information.</p><div class="grid" style="margin-top:1rem"><div class="card"><h3>${lc} of 5</h3>Lessons completed</div><div class="card"><h3>${qc} of 5</h3>Quizzes completed</div><div class="card"><h3>${P.c}</h3>Total correct answers (first try)</div><div class="card"><h3>${ex} of 5</h3>Categories explored</div></div><h2>Skill bars</h2>${K.map(k=>`<p><b>${C[k].i} ${C[k].n}</b>: ${pct(k)}%</p><div class="bar" role="progressbar" aria-label="${C[k].n} progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct(k)}"><i style="width:${pct(k)}%"></i></div>`).join("")}<h2>Badges</h2><p>${K.map(k=>{const e=earned.includes(k);return `<span class="badge ${e?"":"off"}">${e?"⭐ Earned":"🔒 Locked"}: ${C[k].badge}</span>`}).join("")}<span class="badge ${earned.length==5?"":"off"}">${earned.length==5?"🏆 Earned":"🔒 Locked"}: LifeSkills Champion</span></p><p class="note">Earn a badge by finishing the lesson and the quiz in a category.</p><h2>Start over</h2><div id="rs"><button class="btn alt" id="r1">Reset my progress</button></div>`;
+el.querySelector("#r1").onclick=()=>{el.querySelector("#rs").innerHTML='<p><b>Are you sure? This clears all lessons, scores and badges on this device.</b></p><button class="btn" id="r2">Yes, reset</button> <button class="btn alt" id="r3">No, keep it</button>';
+el.querySelector("#r2").onclick=()=>{P={l:{},q:{},c:0,v:{},a:{}};sp();pages.progress(el)};el.querySelector("#r3").onclick=()=>pages.progress(el)}},
+about(el){el.innerHTML=`<h1>About LifeSkills Mini</h1><div class="card"><p>LifeSkills Mini is a free educational project designed to help children practise everyday skills through short, interactive lessons. Our goal is to make practical learning accessible, enjoyable, and available to everyone.</p><p>LifeSkills Mini is designed as an open-source community project. Developers, educators, parents, and students can help improve its lessons, accessibility, and learning activities.</p></div><h2>Our Mission</h2><p>Help children aged 5–12 feel confident with the small things they do every day.</p><h2>What You Can Learn</h2><p>Telling time, money, signs and symbols, everyday safety, and smart choices.</p><h2>Accessibility</h2><p>Use Settings to change text size, turn on high contrast, or reduce motion. Everything works with a keyboard. Answers are shown with words and symbols, not colour alone.</p><h2>Open-Source Contributions</h2><p>Lessons and questions live in one clear data list (the <code>C</code> object in the source). Contributors can add questions there.</p><p class="note">The button below is a placeholder link. It must be replaced with the real repository address before publication.</p><p><a class="btn" href="https://github.com/REPLACE-WITH-REPOSITORY-URL" target="_blank" rel="noopener">View Source Code on GitHub</a></p><p>Learning signs and safety rules here does not replace what trusted adults and official guidance say.</p>`},
+cat(el,k){const c=C[k];P.v[k]=1;sp();
+el.innerHTML=`<p><a href="#learn">← All skills</a></p><h1>${c.i} ${c.n}</h1><div class="card" id="ls" style="background:${c.bg}"></div><div class="card" id="act" style="margin-top:1rem"></div><h2>Quiz</h2><div class="card" id="qz"><p>Ready to play? 5 fun questions. Take your time. You can always try again!</p><button class="btn" id="qs">Let’s play! 🎲</button></div>`;
+lessonUI(el.querySelector("#ls"),k);
+const a=el.querySelector("#act");if(k=="time")timeAct(a);else if(k=="money")moneyAct(a);else if(k=="signs")signAct(a);else a.innerHTML=`<h3>Think it through</h3><p>${k=="safety"?"Remember: a trusted adult is always a good first helper. In an emergency, ask an adult to call the local emergency number.":"Try the quiz below. Every question is a small everyday situation."}</p>`;
+el.querySelector("#qs").onclick=()=>runQuiz(el.querySelector("#qz"),k)}};
+function route(){let h=location.hash.slice(1)||"home";if(!K.includes(h)&&!["home","learn","progress","about"].includes(h))h="home";const el=$("#main");
+document.querySelectorAll("nav a").forEach(a=>a.dataset.p===(C[h]?"learn":h)?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current"));
+if(C[h])pages.cat(el,h);else(pages[h]||pages.home)(el);document.title=(C[h]?C[h].n:h[0].toUpperCase()+h.slice(1))+" · LifeSkills Mini";window.scrollTo(0,0);el.focus({preventScroll:true})}
+/* ---------- SETTINGS ---------- */
+function applyS(){const r=document.documentElement;r.className=S.t;document.body.classList.toggle("hc",!!S.hc);document.body.classList.toggle("rm",!!S.rm);$("#hc").checked=!!S.hc;$("#rm").checked=!!S.rm;
+$("#ts").innerHTML=[["small","Small"],["","Medium"],["big","Large"],["xl","Extra large"]].map(x=>`<button class="btn alt" data-t="${x[0]}" aria-pressed="${S.t===x[0]}">${x[1]}${S.t===x[0]?" ✔":""}</button>`).join("");
+document.querySelectorAll("#ts button").forEach(b=>b.onclick=()=>{S.t=b.dataset.t;store.set("lsm-s",S);applyS()})}
+$("#sb").onclick=()=>{const o=$("#set").classList.toggle("on");$("#sb").setAttribute("aria-expanded",o)};
+$("#hc").onchange=e=>{S.hc=e.target.checked?1:0;store.set("lsm-s",S);applyS()};$("#rm").onchange=e=>{S.rm=e.target.checked?1:0;store.set("lsm-s",S);applyS()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#set").classList.contains("on")){$("#sb").click();$("#sb").focus()}});
+addEventListener("hashchange",route);applyS();route();
+</script></body></html>
